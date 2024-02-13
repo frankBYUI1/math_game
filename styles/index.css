@@ -1,0 +1,19 @@
+#container {
+    flex: 2 50%;
+}
+
+#game-box {
+    background-color: blue;
+    color: white;
+    float: right;
+    height: 100%;
+    width: 48%;
+}
+
+.equationBox {
+    background-color: green;
+    color: black;
+    float: left;
+    height: 50%;
+    width: 48%;
+}
