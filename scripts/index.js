@@ -1,26 +1,42 @@
-const gameBox = document.getElementById("game-box");
-const mathBox = document.getElementById("math-box");
+const gameBox = document.getElementById("gameBox");
+const mathBox = document.getElementById("mathBox");
 
 function createGameBox() {
     const testElement = document.createElement("div");
-    testElement.classList.add("test");
+    testElement.classList.add("gameBox");
     testElement.innerHTML =
         `<div> 
-            <p>This is test.</p> 
+            <p>Game goes here.</p> 
         </div>`
     ;
     gameBox.appendChild(testElement);
+    const playArea = document.createElement("div");
+    playArea.classList.add("eventBox");
+    playArea.innerHTML = 
+        `<div>
+            <p>Game is played in this box</p>
+        </div>`
+        ;
+    testElement.appendChild(playArea);
 }
 
 function createEquationBox() {
     const equationBox = document.createElement("div");
-    equationBox.classList.add("equationBox");
+    equationBox.classList.add("mathBox");
     equationBox.innerHTML = 
         `<div>
             <p>Math goes here</p>
         </div>`
     ;
     mathBox.appendChild(equationBox);
+    const numberBox = document.createElement("div");
+    numberBox.classList.add("displayBox");
+    numberBox.innerHTML = 
+        `<div>
+            <p>10 + 15 = ?</p>
+        </div>`
+    ;
+    equationBox.appendChild(numberBox);
 }
 
 createGameBox();
