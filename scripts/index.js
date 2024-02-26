@@ -1,5 +1,9 @@
 const gameBox = document.getElementById("gameBox");
 const mathBox = document.getElementById("mathBox");
+var rand1 = Math.floor(Math.Random() * 6);
+var rand2 = Math.floor(Math.Random() * 6);
+let op = ["+", "-", "*", "/"];
+var randindex = Math.floor(Math.Random() * 4);
 
 function createGameBox() {
     const testElement = document.createElement("div");
@@ -24,17 +28,20 @@ function createEquationBox() {
     const equationBox = document.createElement("div");
     equationBox.classList.add("mathBox");
     equationBox.innerHTML = 
-        `<div>
-            <p>Math goes here</p>
-        </div>`
+    `<div>
+        <p> </p>
+    </div>`
     ;
     mathBox.appendChild(equationBox);
+
+
     const numberBox = document.createElement("div");
     numberBox.classList.add("displayBox");
+    // <p> 10 + 5 </p>
     numberBox.innerHTML = 
-        `<div>
-            <p>10 + 15 = ?</p>
-        </div>`
+    `<div>
+    <p>${rand1} ${op[0]} ${rand2}</p>
+    </div>`
     ;
     equationBox.appendChild(numberBox);
 }
