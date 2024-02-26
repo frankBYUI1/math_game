@@ -3,7 +3,7 @@ const mathBox = document.getElementById("mathBox");
 var rand1 = Math.floor(Math.Random() * 6);
 var rand2 = Math.floor(Math.Random() * 6);
 let op = ["+", "-", "*", "/"];
-var randindex = Math.floor(Math.Random() * 4);
+var randindex = Math.floor(Math.Random() * 3);
 
 function createGameBox() {
     const testElement = document.createElement("div");
@@ -29,7 +29,7 @@ function createEquationBox() {
     equationBox.classList.add("mathBox");
     equationBox.innerHTML = 
     `<div>
-        <p> </p>
+        <p></p>
     </div>`
     ;
     mathBox.appendChild(equationBox);
@@ -40,11 +40,30 @@ function createEquationBox() {
     // <p> 10 + 5 </p>
     numberBox.innerHTML = 
     `<div>
-    <p>${rand1} ${op[0]} ${rand2}</p>
+        <p></p>
     </div>`
     ;
     equationBox.appendChild(numberBox);
 }
+
+// function getEquation() {
+//     var num1 = rand1;
+//     var num2 = rand2;
+//     var answer;
+
+//     switch (op[randindex]) {
+//         case(0):
+//             answer = num1 + num2;
+//         case(1):
+//             answer = num1 - num2;
+//         case(2):
+//             answer = num1 * num2;
+//         case(3):
+//             answer = num1 / num2;
+//     }
+
+//     return answer
+// } 
 
 createGameBox();
 createEquationBox();
