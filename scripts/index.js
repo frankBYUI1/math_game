@@ -1,7 +1,8 @@
 const gameBox    =  document.getElementById("gameBox");
 const mathBox    =  document.getElementById("mathBox");
-const userAnswer =  document.getElementById("answer");
+const userAnswer =  document.getElementById("userAnswer");
 const question   =  document.getElementById("question");
+const result     =  document.getElementById("result");
 
 
 // EQUATION GENERATION FUNCTIONS
@@ -11,7 +12,11 @@ function genAddition(difficulty)
     // Generates a randomized addition equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
 
-    // Code goes here...
+    const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    answer = num1 + num2;
+
+    return (num1, num2, answer);
 }
 function genSubtraction(difficulty)
 {
@@ -38,77 +43,28 @@ function genDivision(difficulty)
 
 // UPDATE HTML FUNCTIONS
 
-function createGameBox() 
-{
-    const testElement = document.createElement("div");
-    testElement.classList.add("gameBox");
-    testElement.innerHTML =
-        `<div> 
-            <p>Game goes here!!</p> 
-        </div>`
-    ;
-    gameBox.appendChild(testElement);
-    const playArea = document.createElement("div");
-    playArea.classList.add("eventBox");
-    playArea.innerHTML = 
-        `<div>
-            <p>Game is played in this box</p>
-        </div>`
-        ;
-    testElement.appendChild(playArea);
-}
-function createEquationBox() 
-{
-    const equationBox = document.createElement("div");
-    equationBox.classList.add("mathBox");
-    equationBox.innerHTML = 
-        `<div>
-            <p>Math goes here</p>
-        </div>`
-    ;
-    mathBox.appendChild(equationBox);
-    const numberBox = document.createElement("div");
-    numberBox.classList.add("displayBox");
-    numberBox.innerHTML = 
-    `<div> 
-    <h1>Math Game</h1>
-    <h4>For Smart People</h2>
-    </div>`    
-    
-    // `<div>
-    //         <p>10 + 15 = ?</p>
-    //     </div>`
-    ;
-    equationBox.appendChild(numberBox);
-}
 function checkAnswer(num1, num2, userAnswer) 
 {
     // Checks the user's input and compares it to the question to 
     // see if the user's answer matches the equations correct answer.
 
-    if (num1 + num2 === userAnswer) {
-
-        // Output to html page Correct
-
-        // console.log("Correct!");
-    } else {
-
-        // Output to html page Incorrect
-
-        // console.log("Incorrect");
+    if (isNaN(userAnswer)) {
+        result.innerText = 'Please enter a valid number.';
+        return;
     }
+
+    const resultMessage = userAnswer === answer ? 'Correct!' : 'Incorrect. Try again.';
+
+    result.innerText = resultMessage;
 }
-function updateWebEquation(num1, num2, answer)
+function updateQuestion(num1, num2, answer)
 {
     // Updates the HTML to show a new equation provided
     // from the passed parameters.
 
-    // Code goes here...
+    question.innerHTML = `${num1} + ${num2} = <input type='text' id='userAnswer' required>`;
+
 }
 
 
 
-
-
-createGameBox();
-createEquationBox();
