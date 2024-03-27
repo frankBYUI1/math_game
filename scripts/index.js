@@ -52,19 +52,52 @@ function checkAnswer(num1, num2, userAnswer)
         result.innerText = 'Please enter a valid number.';
         return;
     }
-
-    const resultMessage = userAnswer === answer ? 'Correct!' : 'Incorrect. Try again.';
+    const resultMessage = userAnswer === num1 + num2 ? 'Correct!' : 'Incorrect. Try again.';
 
     result.innerText = resultMessage;
 }
-function updateQuestion(num1, num2, answer)
+function updateQuestion(num1, num2)
 {
     // Updates the HTML to show a new equation provided
     // from the passed parameters.
 
     question.innerHTML = `${num1} + ${num2} = <input type='text' id='userAnswer' required>`;
 
+
 }
 
 
 
+
+// MAIN FUNCTION
+
+
+function main()
+{
+    // Runs the logic of the page.
+    // Loops through to randomly choose a type of question to generate, then 
+    // displays the question until a correct answer is submitted.
+
+    const eq = Math.floor(Math.random() * 4) + 1;
+
+    switch (eq)
+    {
+        case 1:
+            
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            break;
+    }
+}
+
+
+
+
+main();
