@@ -1,13 +1,13 @@
-const gameBox    =  document.getElementById("gameBox");
-const mathBox    =  document.getElementById("mathBox");
-const userAnswer =  document.getElementById("userAnswer");
-const question   =  document.getElementById("question");
-const result     =  document.getElementById("result");
+const gameBox           =  document.getElementById("gameBox");
+const mathBox           =  document.getElementById("mathBox");
+const userAnswerElement =  document.getElementById("userAnswer");
+const question          =  document.getElementById("question");
+const result            =  document.getElementById("result");
 
 
 // EQUATION GENERATION FUNCTIONS
 
-function genAddition(difficulty)
+function genAddition(difficulty = 1)
 {
     // Generates a randomized addition equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
@@ -16,61 +16,108 @@ function genAddition(difficulty)
     const num2 = Math.floor(Math.random() * 10) + 1;
     answer = num1 + num2;
 
-    return (num1, num2, answer);
+    return [num1, num2, '+'];
 }
-function genSubtraction(difficulty)
+function genSubtraction(difficulty = 1)
 {
     // Generates a randomized subtraction equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
 
-    // Code goes here...
+    const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    answer = num1 - num2;
+
+    return [num1, num2, '-'];
 }
-function genMultiplication(difficulty)
+function genMultiplication(difficulty = 1)
 {
     // Generates a randomized multiplication equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
 
-    // Code goes here...
+    const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    answer = num1 * num2;
+
+    return [num1, num2, '*'];
 }
-function genDivision(difficulty)
+function genDivision(difficulty = 1)
 {
     // Generates a randomized division equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
 
-    // Code goes here...
+    const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    answer = num1 / num2;
+
+    return [num1, num2, '÷'];
 }
 
 
 // UPDATE HTML FUNCTIONS
 
-function checkAnswer(num1, num2, userAnswer) 
-{
-    // Checks the user's input and compares it to the question to 
-    // see if the user's answer matches the equations correct answer.
+function checkAnswer() {
+    // Retrieves the user's input value and compares it to the correct answer
 
-    if (isNaN(userAnswer)) {
-        result.innerText = 'Please enter a valid number.';
-        return;
+    // Fetch num1 and num2 from the DOM
+    // Fetch the question element again
+    const question = document.getElementById("question");
+    // Fetch the string of the question element
+    const questionText = question.innerText;
+    // Gets num1 and num2 by index and converts string to int
+    const num1 = parseInt(questionText[0]);
+    const num2 = parseInt(questionText[4]);
+
+
+    // Fetch the userAnswerElement again from the DOM
+    const userAnswerElement = document.getElementById("userAnswer");
+    // Retrieve the value from the input element
+    let userAnswer = userAnswerElement.value;
+    // Convert the user's answer to a number
+    userAnswer = parseInt(userAnswer);
+
+
+    // Fetch the type of equation
+    const symbol = questionText[2];
+    switch(symbol)
+    {
+        case '+':
+            // Check if the user's answer matches the correct answer
+            resultMessage = userAnswer === num1 + num2 ? 'Correct!' : 'Incorrect. Try again.';
+            break;
+        case '-':
+            // Check if the user's answer matches the correct answer
+            resultMessage = userAnswer === num1 - num2 ? 'Correct!' : 'Incorrect. Try again.';
+            break;
+        case '*':
+            // Check if the user's answer matches the correct answer
+            resultMessage = userAnswer === num1 * num2 ? 'Correct!' : 'Incorrect. Try again.';
+            break;
+        case '÷':
+            // Check if the user's answer matches the correct answer
+            resultMessage = userAnswer === num1 / num2 ? 'Correct!' : 'Incorrect. Try again.';
+            break;
     }
-    const resultMessage = userAnswer === num1 + num2 ? 'Correct!' : 'Incorrect. Try again.';
 
+    // Display the result message
     result.innerText = resultMessage;
+    
+    // Loops the program when the answer is correct
+    if (resultMessage == 'Correct!')
+    {
+        main();
+    }
+
 }
-function updateQuestion(num1, num2)
+function updateQuestion(num1, num2, symbol)
 {
     // Updates the HTML to show a new equation provided
     // from the passed parameters.
 
-    question.innerHTML = `${num1} + ${num2} = <input type='text' id='userAnswer' required>`;
-
-
+    question.innerHTML = `${num1} ${symbol} ${num2} = <input type='text' id='userAnswer' required>`;
 }
 
 
-
-
 // MAIN FUNCTION
-
 
 function main()
 {
@@ -78,26 +125,40 @@ function main()
     // Loops through to randomly choose a type of question to generate, then 
     // displays the question until a correct answer is submitted.
 
-    const eq = Math.floor(Math.random() * 4) + 1;
 
-    switch (eq)
+    // Generates random number between 1-4
+    const gen = Math.floor(Math.random() * 4) + 1;
+
+    let equation = [0,0,0];
+    switch (gen)
     {
         case 1:
-            
+            // Addition
+            equation = genAddition();
             break;
         case 2:
-
+            // Subtraction
+            equation = genSubtraction();
             break;
         case 3:
-
+            // Multiplication
+            equation = genMultiplication();
             break;
         case 4:
-
+            // Division
+            equation = genDivision();
             break;
     }
+
+    num1    = equation[0];
+    num2    = equation[1];
+    symbol  = equation[2];
+
+    // Updates HTML to display new equation
+    // 2 + 2 IS DEFAULT HTML EQUATION IF THIS FAILS
+    updateQuestion(num1, num2, symbol);
+
 }
-
-
 
 
 main();
