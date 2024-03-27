@@ -9,8 +9,10 @@ const result            =  document.getElementById("result");
 
 function genAddition(difficulty = 1)
 {
+    //
     // Generates a randomized addition equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
+    //
 
     const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
     const num2 = Math.floor(Math.random() * 10) + 1;
@@ -20,8 +22,10 @@ function genAddition(difficulty = 1)
 }
 function genSubtraction(difficulty = 1)
 {
+    //
     // Generates a randomized subtraction equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
+    // 
 
     const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
     const num2 = Math.floor(Math.random() * 10) + 1;
@@ -31,8 +35,10 @@ function genSubtraction(difficulty = 1)
 }
 function genMultiplication(difficulty = 1)
 {
+    // 
     // Generates a randomized multiplication equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
+    // 
 
     const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
     const num2 = Math.floor(Math.random() * 10) + 1;
@@ -42,8 +48,10 @@ function genMultiplication(difficulty = 1)
 }
 function genDivision(difficulty = 1)
 {
+    // 
     // Generates a randomized division equation using only whole positive numbers. 
     // Returns a tuple of 3 integers being num1, num2, and  answer
+    // 
 
     const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
     const num2 = Math.floor(Math.random() * 10) + 1;
@@ -56,10 +64,11 @@ function genDivision(difficulty = 1)
 // UPDATE HTML FUNCTIONS
 
 function checkAnswer() {
+    //
     // Retrieves the user's input value and compares it to the correct answer
+    //
 
-    // Fetch num1 and num2 from the DOM
-    // Fetch the question element again
+    // Fetch the question element again from the DOM
     const question = document.getElementById("question");
     // Fetch the string of the question element
     const questionText = question.innerText;
@@ -110,8 +119,10 @@ function checkAnswer() {
 }
 function updateQuestion(num1, num2, symbol)
 {
+    // 
     // Updates the HTML to show a new equation provided
     // from the passed parameters.
+    // 
 
     question.innerHTML = `${num1} ${symbol} ${num2} = <input type='text' id='userAnswer' required>`;
 }
@@ -121,9 +132,11 @@ function updateQuestion(num1, num2, symbol)
 
 function main()
 {
+    // 
     // Runs the logic of the page.
     // Loops through to randomly choose a type of question to generate, then 
     // displays the question until a correct answer is submitted.
+    // 
 
 
     // Generates random number between 1-4
