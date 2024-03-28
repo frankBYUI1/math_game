@@ -15,10 +15,22 @@ function genAddition(difficulty)
 }
 function genSubtraction(difficulty)
 {
-    // Generates a randomized subtraction equation using only whole positive numbers. 
-    // Returns a tuple of 3 integers being num1, num2, and  answer
+    // Generates a randomized subtraction equation using only whole positive numbers.
+    let num1 = Math.floor(Math.random() * (100 - difficulty + 1)) + difficulty;
+    let num2 = Math.floor(Math.random() * (num1 - 1)) + 1; // num2 is between 1 and num1 - 1
 
-    // Code goes here...
+    // Ensure num1 is bigger or equal to num2
+    if (num2 > num1) {
+        let temp = num1;
+        num1 = num2;
+        num2 = temp;
+    }
+
+    // Answer:
+    let answer = num1 - num2;
+    
+    // Returns a tuple of 3 integers being num1, num2, and  answer
+    return [num1, num2, answer];
 }
 function genMultiplication(difficulty)
 {
