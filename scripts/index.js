@@ -14,8 +14,8 @@ function genAddition(difficulty = 1)
     // Returns a tuple of 3 integers being num1, num2, and  answer
     //
 
-    const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
-    const num2 = Math.floor(Math.random() * 10) + 1;
+    const num1 = Math.floor(Math.random() * 12) + 1;        // Generates number between 1 and 10 inclusive
+    const num2 = Math.floor(Math.random() * 12) + 1;
     answer = num1 + num2;
 
     return [num1, num2, '+'];
@@ -27,8 +27,8 @@ function genSubtraction(difficulty = 1)
     // Returns a tuple of 3 integers being num1, num2, and  answer
     // 
 
-    const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
-    const num2 = Math.floor(Math.random() * 10) + 1;
+    const num1 = Math.floor(Math.random() * 12) + 1;        // Generates number between 1 and 10 inclusive
+    const num2 = Math.floor(Math.random() * 12) + 1;
     answer = num1 - num2;
 
     return [num1, num2, '-'];
@@ -40,8 +40,8 @@ function genMultiplication(difficulty = 1)
     // Returns a tuple of 3 integers being num1, num2, and  answer
     // 
 
-    const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
-    const num2 = Math.floor(Math.random() * 10) + 1;
+    const num1 = Math.floor(Math.random() * 12) + 1;        // Generates number between 1 and 10 inclusive
+    const num2 = Math.floor(Math.random() * 12) + 1;
     answer = num1 * num2;
 
     return [num1, num2, '*'];
@@ -53,8 +53,8 @@ function genDivision(difficulty = 1)
     // Returns a tuple of 3 integers being num1, num2, and  answer
     // 
 
-    const num1 = Math.floor(Math.random() * 10) + 1;        // Generates number between 1 and 10 inclusive
-    const num2 = Math.floor(Math.random() * 10) + 1;
+    const num1 = Math.floor(Math.random() * 12) + 1;        // Generates number between 1 and 10 inclusive
+    const num2 = Math.floor(Math.random() * 12) + 1;
     answer = num1 / num2;
 
     return [num1, num2, '÷'];
@@ -66,6 +66,7 @@ function genDivision(difficulty = 1)
 function checkAnswer() {
     //
     // Retrieves the user's input value and compares it to the correct answer
+    // Called by a button
     //
 
     // Fetch the question element again from the DOM
@@ -142,7 +143,8 @@ function main()
     // Generates random number between 1-4
     const gen = Math.floor(Math.random() * 4) + 1;
 
-    let equation = [0,0,0];
+    // Initiate and have a default value for equation
+    let equation = [0,0,'error'];
     switch (gen)
     {
         case 1:
@@ -168,8 +170,9 @@ function main()
     symbol  = equation[2];
 
     // Updates HTML to display new equation
-    // 2 + 2 IS DEFAULT HTML EQUATION IF THIS FAILS
+    // -1 + -1 IS DEFAULT HTML EQUATION IF THIS FAILS
     updateQuestion(num1, num2, symbol);
+
 
 }
 
